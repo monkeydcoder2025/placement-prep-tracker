@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Semester I Mid Terms",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-12",
+    "type": "exam"
+  },
+  {
+    "id": 2,
+    "name": "Semester I Term End Exams",
+    "startDate": "2026-11-19",
+    "endDate": "2026-12-18",
+    "type": "exam"
+  },
+  {
+    "id": 3,
+    "name": "Semester II Mid Terms",
+    "startDate": "2027-03-08",
+    "endDate": "2027-03-13",
+    "type": "exam"
+  },
+  {
+    "id": 4,
+    "name": "Semester II Term End Exams",
+    "startDate": "2027-05-12",
+    "endDate": "2027-05-31",
+    "type": "exam"
+  }
+]

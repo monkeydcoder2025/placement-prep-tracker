@@ -1,0 +1,666 @@
+CampusX Data Science Mentorship Program
+
+Week 1 : Basics of Python Programming
+1. Session 1: Python Basics
+  - About Python
+  - Python Output/print function
+  - Python Data Types
+  - Python Variables
+  - Python comments
+  - Python Keywords and Identifiers
+  - Python User Input
+  - Python Type conversion
+  - Python Literals
+2. Session 2: Python Operators + if-else + Loops
+  - Python Operators
+  - Python if-else
+  - Python Modules
+  - Python While Loop
+  - Python for loop
+3. Session 3: Python Strings
+  - Solving Loop problems
+  - Break, continue, pass statement in loops
+  - Strings
+  - String indexing
+  - String slicing
+  - Edit and delete a string
+  - Operations on String
+  - Common String functions
+4. Session on Time complexity
+  - Efficiency in Programming and Orders of Growth
+  - Examples
+
+Week 2: Python Data Types
+1. Session 4: Python Lists
+  - Array vs List
+  - How lists are stored in a memory
+  - Characteristics of Python List
+  - Create and access a list
+  - append(), extend(), insert()
+  - Edit items in a list
+  - Deleting items from a list
+  - Arithmetic, membership and loop operations
+  - List functions
+  - List comprehension
+  - 2 Ways to traverse a list
+  - Zip() function
+  - Disadvantages of Python list
+2. Session 5: Tuples + Set + Dictionary
+  - Tuple: Create, access, edit, delete, operations, functions, unpacking, zip()
+  - Set: Create, access, edit, delete, operations, functions, frozen set, comprehension
+  - Dictionary: Create, access, add/remove/edit, operations, functions, comprehension, nested
+3. Session 6: Python Functions
+  - Create function
+  - Arguments and parameters
+  - args and kwargs
+  - How functions are executed in memory
+  - Variable scope
+  - Nested functions
+  - Functions are first class citizens
+  - Lambda functions
+  - Higher order functions
+  - map(), filter(), reduce()
+
+Week 3: Object Oriented Programming (OOP)
+1. Session 7: OOP Part1
+  - What is OOP?
+  - Classes and Objects
+  - Methods vs Functions
+  - Class diagram
+  - Magic/Dunder methods
+  - Constructor
+  - Concept of self
+  - Create Fraction Class
+  - __str__, __add__, __sub__, __mul__, __truediv__
+2. Session 8: OOP Part2
+  - How objects access attributes
+  - Attribute creation from outside class
+  - Reference Variables
+  - Mutability of Object
+  - Encapsulation
+  - Collection of objects
+  - Static variables and methods
+3. Session 9: OOP Part3
+  - Class Relationship
+  - Aggregation
+  - Inheritance
+  - Method Overriding
+  - Super keyword
+  - Types of Inheritance (Single, Multilevel, Hierarchical, Multiple)
+  - Hybrid Inheritance and Diamond problem
+  - Polymorphism
+  - Method Overriding and Overloading
+  - Operator Overloading
+4. Session on Abstraction
+  - What is Abstraction?
+  - Abstract class
+  - Coding abstract class
+5. Session on OOP Project
+
+Week 4: Advanced Python
+1. Session 10: File Handling + Serialization & Deserialization
+  - How File I/O is done
+  - Writing to text file, append(), reading
+  - Context manager with()
+  - Reading big file in chunks
+  - Seek and tell
+  - Working with Binary file
+  - Serialization and Deserialization
+  - JSON module dump() and load()
+  - Pickling
+  - Pickle vs JSON
+2. Session 11: Exception Handling
+  - Syntax Error vs Exception
+  - Try-Except-Else-Finally
+  - Handling Specific Error
+  - Raise Exception
+  - Create custom Exception
+3. Session 12: Decorators and Namespaces
+  - Namespaces
+  - Scope and LEGB rule
+  - Decorators with Examples
+4. Session on Iterators
+  - What are iterators and iterables
+  - How for loop works in Python
+  - Making your own for loop
+  - Create your own range function
+5. Session on Generator
+  - What is a generator?
+  - Yield vs Return
+  - Generator Expression
+  - Benefits of generator
+6. Session on GUI Development using Python (tkinter)
+
+Week 5: Numpy
+1. Session 13: Numpy Fundamentals
+  - Numpy Theory
+  - Numpy array and Matrix
+  - Array attributes
+  - Array operations (Scalar and Vector)
+  - Numpy array functions (dot product, log, exp, mean, median, std, prod, min, max, trigo, variance)
+  - Reshaping, Stacking, Splitting
+2. Session 14: Advanced Numpy
+  - Numpy array vs Python List
+  - Advanced, Fancy and Boolean Indexing
+  - Broadcasting
+  - Mathematical operations
+  - Sigmoid and MSE in numpy
+  - Working with missing values
+  - Plotting graphs
+3. Session 15: Numpy Tricks
+  - sort, append, concatenate, percentile, flip, Set functions
+
+Week 6: Pandas
+1. Session 16: Pandas Series
+  - Introduction to Pandas Series
+  - Series Methods and Math Methods
+  - Boolean Indexing on Series
+  - Plotting graphs on series
+2. Session 17: Pandas DataFrame
+  - Introduction to DataFrame
+  - Creating DataFrame and read_csv()
+  - DataFrame attributes and methods
+  - Math Methods
+  - Selecting cols and rows
+  - Filtering a Dataframe
+  - Adding new columns, astype()
+3. Session 18: Important DataFrame Methods
+  - sort, index, reset_index, isnull, dropna, fillna, drop_duplicates, value_counts, apply
+
+Week 7: Advanced Pandas
+1. Session 19: GroupBy Object
+  - What is GroupBy?
+  - Aggregation functions on groupby
+  - GroupBy Attributes and Methods
+  - Hands-on IPL dataset
+2. Session 20: Merging, Joining, Concatenating
+  - Pandas concat method
+  - Merge and join methods
+  - Practical implementations
+3. Session on Streamlit
+  - Introduction to Streamlit
+  - Mini-project on Indian Startup Funding
+4. Session on Pandas Case Study (Indian Startup Funding)
+5. Session on Git
+  - What is Git and VCS
+  - How Git works
+  - add, commit, gitignore, log
+6. Session on Git and GitHub
+  - Branching, Merging, Undoing changes
+  - Working with remote repo
+
+Week 8: Advanced Pandas Continued
+1. Session 21: MultiIndex Series and DataFrames
+  - Multiindex objects
+  - Stacking and unstacking
+  - Transpose and Swaplevel
+  - Long vs wide data, Pandas-melt
+2. Session 22: Vectorized String Operations | Datetime in Pandas
+  - Pivot table
+  - Agg functions
+  - Vectorized String operations
+  - Pandas Datetime
+3. Session on Pandas Case Study - Time Series analysis
+4. Session on Pandas Case Study - Working with textual data
+
+Week 9: Data Visualization
+1. Session 23: Plotting Using Matplotlib
+  - Simple functions, labels, legends, multiple plots
+  - Scatter plots, Bar chart, Histogram, Pie chart
+  - Changing styles
+2. Session 24: Advanced Matplotlib
+  - Colored Scatterplot, Plot size, annotations
+  - Subplots, 3D plots, Contour plots, Heatmaps
+  - Pandas plot()
+3. Session on Plotly (Express)
+4. Session on Plotly Graph Objects (go)
+5. Session on Plotly Dash
+6. Making a COVID-19 dashboard using Plotly and Dash
+7. Session on Project using Plotly (Indian Census Data)
+
+Week 10: Data Visualization Continued
+1. Session 25: Plotting Using Seaborn - part 1
+  - Seaborn roadmap
+  - Relational plots, Distribution plots, KDE plot, Matrix plot
+2. Session 26: Plotting Using Seaborn - Part 2
+  - Categorical Plots (Strip, Swarm, Box, Violin, Bar, Point, Count)
+  - Faceting, Regression Plots
+  - FacetGrid, Pairplot, JointGrid
+
+Week 11: Data Analysis Process - Part1
+1. Session 27: Data Gathering | Data Analysis
+  - Data Analysis Process
+  - Import from CSV, excel, JSON, text, SQL
+  - Export data
+  - Gather Data through API or Web Scraping
+2. Session 28: Data Assessing and Cleaning
+  - Types of unclean data
+  - Types of Assessment
+  - Data Quality Dimension
+  - Data Cleaning
+3. Session on ETL using AWS RDS
+4. Session on Advanced Web Scraping using Selenium
+
+Week 12: Data Analysis Process - Part 2
+1. Session on Data Cleaning Case Study - Smartphone dataset
+2. Session 29: Exploratory Data Analysis (EDA)
+  - Introduction and Steps for EDA
+  - Univariate Analysis
+  - Bivariate Analysis
+  - Feature Engineering
+3. Session on Data Cleaning - Part 2
+4. Session on EDA Case Study - Smartphone Dataset
+
+Week 13: SQL Basics
+1. Session 30: Database Fundamentals
+  - Data and Database, CRUD, Properties
+  - Types of Database, DBMS, Keys
+  - Cardinality of Relationship
+2. Session 31: SQL DDL Commands
+  - Types of SQL commands, DDL commands
+3. Session on Tableau - Olympics Dataset (Part 1)
+
+Week 14: SQL Continued - Part 1
+1. Session 32: SQL DML commands
+  - INSERT, SELECT, UPDATE, DELETE
+  - Functions in SQL
+2. Session 33: SQL Grouping and Sorting
+  - ORDER BY, GROUP BY, HAVING
+  - Practice on IPL Dataset
+3. Session on Tableau - Part 2
+
+Week 15: SQL Continued - Part 2
+1. Session 34: SQL Joins
+  - Types of Joins (Cross, inner, left, right, full outer)
+  - SET operations, SELF join
+  - Query execution order
+2. Session on SQL Case Study 1 - Zomato Dataset
+3. Session 35: Subqueries in SQL
+  - Independent and Correlated subquery
+4. Session on Flight Dashboard using Python and SQL
+5. Session on SQL Interview Questions - Part 1
+
+Week 16: Advanced SQL
+1. Session 36: Window Functions in SQL
+  - OVER(), RANK(), DENSE_RANK(), ROW_NUMBER(), FIRST_VALUE(), LAST_VALUE()
+  - Concept of Frames, LAG(), LEAD()
+2. Session 37: Windows Functions Part 2
+  - Ranking, Cumulative sum/average, Running average, Percent of total
+3. Session 37: Windows Functions Part 3
+  - Percent Change, Quantiles/Percentiles, Segmentation
+  - Cumulative Distribution, Partition by multiple columns
+4. Session on Data Cleaning using SQL | Laptop Dataset
+5. Session on EDA using SQL | Laptop Dataset
+
+Week 17: Descriptive Statistics
+1. Session 38: Descriptive Statistics Part 1
+  - Types of Statistics
+  - Population vs Sample, Types of Data
+  - Measures of central tendency
+  - Measure of Dispersion, Coefficient of variation
+  - Graphs for Univariate and Bivariate Analysis
+2. Session on Datetime in SQL
+
+Week 18: Descriptive Statistics continued
+1. Session 39: Descriptive Statistics part 2
+  - Quantiles and Percentiles
+  - Five Number Summary, Boxplots
+  - Scatterplots, Covariance, Correlation
+  - Correlation vs Causation
+2. Session 40: Probability Distribution Functions
+  - Random Variables
+  - PMF, CDF, PDF
+  - Density Estimation (Parametric, Non-parametric, KDE)
+3. Session on SQL Datetime Case Study
+4. Session on Database Design | Normalization
+
+Week 19: Probability Distributions
+1. Session 41: Normal Distribution
+  - How to use PDF in Data Science
+  - Normal Distribution (importance, equation, parameter)
+  - Standard Normal Variate (z-table, empirical rule)
+  - Skewness, CDF of Normal Distribution
+2. Session 42: Non-Gaussian Probability Distributions
+  - Kurtosis, QQ plot
+  - Uniform, Log-normal, Pareto Distribution
+  - Transformations (Log, Reciprocal, Power, Box-Cox, Yeo-Johnson)
+3. Session on Views and User Defined Functions in SQL
+4. Session on Transactions and Stored Procedures (ACID)
+
+Week 20: Inferential Statistics
+1. Session 43: Central Limit Theorem
+  - Bernoulli and Binomial Distribution
+  - Sampling Distribution
+  - Central Limit Theorem intuition and code
+2. Session on CLT Proof
+3. Session 44: Confidence Intervals
+  - Point Estimate
+  - z-procedure and t-procedure
+  - Interpreting CI
+
+Week 21: Hypothesis Testing
+1. Session 45: Hypothesis Testing (Part 1)
+  - Null and alternate hypothesis
+  - Performing z-test
+  - Rejection region and Significance level
+  - Type-1 and Type-2 Error
+  - One tailed vs two tailed test
+2. Session 46: Hypothesis Testing (Part 2) | p-value and t-tests
+  - p-value interpretation
+  - Single sample t-Test
+  - Independent 2-sample t-Test
+  - Paired 2 sample t-Test
+3. Session on Chi-square test
+  - Goodness of fit test
+  - Test for Independence
+4. Session on ANOVA
+  - F-distribution
+  - One-way ANOVA
+  - Post-Hoc test
+
+Week 22: Linear Algebra
+1. Session on Tensors | Linear Algebra part 1(a)
+  - 0D, 1D, 2D, nD Tensors
+  - Rank, axes and shape
+2. Session on Vectors | Linear Algebra part 1(b)
+  - Vectors, Row/Column vector
+  - Euclidean Distance
+  - Scalar/Vector operations
+  - Dot product, Angle between vectors
+  - Equation of a Hyperplane
+3. Linear Algebra Part 2 | Matrices (computation)
+  - Matrix operations
+  - Transpose, Determinant, Minor, Cofactor
+  - Adjoint, Inverse
+  - Solving Linear Equations
+4. Linear Algebra Part 3 | Matrices (Intuition)
+  - Basis vector, Linear Transformations
+  - Matrix Multiplication as Composition
+  - Determinant and Inverse (intuition)
+
+Week 23: Linear Regression
+1. Session 48: Introduction to Machine Learning
+  - About ML (History, Definition)
+  - Types: Supervised, Unsupervised, Semi-supervised, Reinforcement
+  - Batch vs Online Learning
+  - Instance vs Model-based learning
+  - Challenges in ML
+  - ML Development Lifecycle
+2. Session 49: Simple Linear Regression
+  - Intuition and Types
+  - Code example
+  - How to find m and b
+  - Model from scratch
+  - Metrics: MAE, MSE, RMSE, R2, Adjusted R2
+3. Session 50: Multiple Linear Regression
+  - Mathematical Formulation
+  - Error function, Minimizing error
+  - Code from scratch
+4. Session on Optimization the Big Picture
+  - Parametric vs Non-Parametric ML models
+  - Loss Function
+  - Convex and Non-Convex Loss Functions
+  - Gradient Descent
+5. Session on Differential Calculus
+  - Power/Sum/Product/Quotient/Chain Rule
+  - Partial Differentiation
+  - Matrix Differentiation
+
+Week 24: Gradient Descent
+1. Session 51: Gradient descent from scratch
+  - Intuition, Mathematical Formulation
+  - Code from scratch, Visualization
+  - Effect of Learning Rate, Loss function, Data
+2. Session 52 (part 1): Batch Gradient Descent
+  - Mathematical formulation, Code from scratch
+3. Session 52 (part 2): Stochastic Gradient Descent
+  - Problems with Batch GD
+  - Code from scratch, Visualization
+  - Learning schedules
+4. Session 52 (part 3): Mini-batch Gradient Descent
+  - Introduction, Code, Visualization
+
+Week 25: Regression Analysis
+1. Session on Regression Analysis (Part 1)
+  - What is Regression Analysis
+  - Inference vs Prediction
+  - Statsmodel Linear Regression
+  - TSS, RSS, ESS
+  - Degree of freedom, F-statistic
+2. Session on Regression Analysis (Part 2)
+  - F-test, R-squared, Adjusted R-squared
+  - T-Statistic, Confidence Intervals
+3. Session on Polynomial Regression
+  - Why Polynomial Regression
+  - Formulation and Python code
+4. Session on Assumptions of Linear Regression
+  - Linearity, Normality, Homoscedasticity
+  - No Autocorrelation, No Multicollinearity
+5. Session 53: Multicollinearity
+  - What is multicollinearity
+  - Detection: Correlation, VIF, Condition Number
+  - How to remove Multicollinearity
+
+Week 26: Feature Selection
+1. Session 54: Feature Selection Part 1
+  - What is Feature Selection
+  - Filter based: Duplicate, Variance Threshold, Correlation, ANOVA, Chi-Square
+2. Session 55: Feature Selection Part 2
+  - Wrapper method: Exhaustive, Backward, Forward Selection
+3. Session on Feature Selection Part 3
+  - Embedded Methods: Linear Regression, Tree-based, Regularized
+  - Recursive Feature Elimination
+
+Week 27: Regularization
+1. Session on Bias-Variance Tradeoff
+  - Expected Value and Variance
+  - Bias and Variance Mathematically
+2. Session on What is Regularization
+  - Bias Variance Decomposition
+  - What and When to use Regularization
+3. Ridge Regression Part 1
+  - Types of Regularization
+  - Geometric Intuition
+  - Sklearn Implementation
+4. Ridge Regression Part 2
+  - Ridge for 2D and nD data
+  - Code from scratch
+5. Ridge Regression Part 3
+  - Ridge using Gradient Descent
+6. Ridge Regression Part 4
+  - 5 Key Understandings
+7. Lasso Regression
+  - Intuition, Code example, Key points
+8. Session on Why Lasso creates Sparsity
+9. ElasticNet Regression
+  - Intuition, Code example
+
+Week 28: K Nearest Neighbors
+1. Session on KNN Part 1
+  - Intuition, How to select K
+  - Decision Surface
+  - Overfitting and Underfitting
+2. Session on KNN from scratch
+3. Session on Decision Boundary for Classification
+4. Session on Advanced KNN Part 2
+  - KNN Regressor, Weighted KNN
+  - Euclidean and Manhattan Distance
+  - KD-Tree
+5. Classification Metrics Part 1
+  - Accuracy, Confusion matrix
+  - Type 1 and Type 2 error
+6. Classification Metrics Part 2
+  - Precision, Recall, F1 score
+  - Multi class metrics
+
+Week 29: PCA
+1. Session on Curse of Dimensionality
+2. PCA part 1
+  - Geometric Intuition, Why Variance important
+3. PCA part 2
+  - Mathematical Formulation
+  - Covariance matrix
+  - EigenVectors and Eigenvalues
+  - Step by step solution and code
+4. PCA Part 3
+  - MNIST dataset example
+  - Explained variance
+  - When PCA does not work
+5. Session on Eigen vectors and Eigen Values
+6. Session on Eigen Decomposition and PCA variants
+  - Kernel PCA
+7. Session on SVD
+  - What is SVD, Applications
+  - SVD in PCA
+
+Week 30: Model Evaluation & Selection
+1. ROC Curve
+  - ROC AUC, TPR, FPR
+2. Session on Cross Validation
+  - Hold-out, LOOCV, K-Fold, Stratified K-Fold
+3. Session on Data Leakage
+  - Detection and removal
+4. Session on Hyperparameter Tuning
+  - Grid Search CV, Randomized Search CV
+
+Week 31: Naive Bayes
+1. Crash course on Probability Part 1
+  - Random Experiment, Trials, Outcome, Sample Space, Event
+  - Types of events, Probability
+  - Random variable, Probability distribution
+2. Crash course on Probability Part 2
+  - Venn diagrams, Contingency table
+  - Joint, Marginal, Conditional probability
+  - Independent vs Dependent vs Mutually Exclusive
+  - Bayes Theorem
+3. Session 1 on Naive Bayes
+  - Intuition, Mathematical formulation
+  - Handling numerical data
+  - Naive Bayes on Textual data
+4. Session 2 on Naive Bayes
+  - Log Probabilities, Laplace Smoothing
+  - Gaussian, Categorical, Multinomial Naive Bayes
+5. Session 3 on Naive Bayes
+  - Bernoulli, Binomial, Categorical, Multinomial Distribution
+  - Out of Core Naive Bayes
+6. End to End Project | Email Spam Classifier
+
+Week 32: Logistic Regression
+1. Session 1 on Logistic Regression
+  - Classification Problem
+  - Sigmoid Function
+  - Maximum Likelihood, Log Loss
+  - Gradient Descent
+2. Session on Multiclass Classification
+  - One vs Rest (OVR), SoftMax approach
+3. Session on Maximum Likelihood Estimation
+  - MLE for Normal Distribution
+  - MLE in ML and Logistic Regression
+4. Session 3 on Logistic Regression
+  - Assumptions, Odds and Log(Odds)
+  - Polynomial Features
+  - Regularization in LR
+5. Logistic Regression Hyperparameters
+
+Week 33: Support Vector Machines (SVM)
+1. SVM Part 1 - Hard Margin SVM
+  - Maximum Margin Classifier
+  - Support Vectors
+  - Mathematical Formulation
+2. SVM Part 2 | Soft Margin SVM
+  - Slack Variable, Introduction of C
+  - Bias-Variance Trade Off
+3. Session on Constrained Optimization + Kernels
+  - Kernel Intuition, Types of Kernels
+  - Why called Trick
+4. Session on SVM Dual Problem
+  - Constrained Optimization, KKT Conditions
+  - Duality, SVM Dual Derivation
+5. Session on Maths Behind SVM Kernels
+  - Polynomial Kernel, RBF Kernel
+  - Custom Kernels
+
+Extra: Feature Engineering
+1. Session on Handling Missing Values Part 1
+  - Feature Transformation, Construction, Extraction, Selection
+  - Types of Missing Values (MCAR, MAR, MNAR)
+  - Complete Case Analysis
+2. Session 2 on Handling Missing Data
+  - Univariate Imputation (Mean, Median, Mode, Arbitrary, Random)
+  - Missing Indicator
+3. Session 3 on Handling Missing Data - Multivariate Imputation
+  - KNN Imputer
+  - Iterative Imputer (MICE)
+
+Week 34: Decision Trees
+1. Session 1 on Decision Tree
+  - Intuition, Terminology
+  - CART Algorithm for Classification
+  - Gini Impurity
+  - Geometric Intuition
+2. Session 2 on Decision Tree
+  - CART for Regression
+  - How Prediction is Done
+  - Advantages and Disadvantages
+3. Session 3 on Decision Tree
+  - Feature Importance
+  - Overfitting and Pruning
+  - Cost Complexity Pruning
+4. Session on Decision Tree Visualization (dtreeviz)
+
+Week 35: Ensemble Methods - Introduction
+1. Introduction to Ensemble Learning
+  - Intuition, Types, Why it works
+2. Bagging Part 1 - Introduction
+3. Bagging Part 2 - Classifier
+4. Bagging Part 3 - Regressor
+5. Random Forest Session 1
+  - Intuition, Bagging vs RF, Feature Importance
+6. Random Forest Session 2
+  - Hyperparameters, OOB Score
+  - Extremely Randomized Trees
+  - Advantages and Disadvantages
+
+Week 36: Gradient Boosting
+1. Gradient Boosting Session 1
+  - Boosting, What/How/Why
+2. Gradient Boosting Session 2
+  - How GB works, Intuition
+  - Function Space vs Parameter Space
+  - GB vs Gradient Descent
+3. Gradient Boosting Session 3 (Classification - 1)
+4. GB Classification - 2 | Geometric Intuition
+5. GB Classification - 3 | Math Formulation
+  - Loss Function, Pseudo Residuals
+  - Final Model
+
+Capstone Project: Real Estate Price Prediction
+1. Session 1: Data Gathering
+2. Session 2: Data Cleaning
+3. Session 3: Feature Engineering (additionalRoom, areaWithType, agePossession, furnishDetails, luxury Score)
+4. Session 4: EDA (Univariate, PandasProfiling, Multivariate)
+5. Session 5: Outlier Detection and Removal
+6. Session 6: Missing Value Imputation
+7. Session 7: Feature Selection (Correlation, RF Importance, GB Importance, Permutation, LASSO, RFE, SHAP)
+8. Session 8: Model Selection and Productionalization (Encoding Selection, Price Prediction Pipeline, Streamlit)
+9. Session 9: Building Analytics Module (geo map, word cloud, scatterplot, pie chart, boxplot, distplot)
+10. Session 10: Building Recommender System Part 1
+11. Session 11: Building Recommender System Part 2 + Web Interface
+12. Session 12: Building Insights Module
+13. Session 13: Deploying on AWS
+
+XGBoost
+1. Introduction to XGBoost (Performance, Speed, Flexibility)
+2. XGBoost for Regression (Step-by-Step Math)
+3. XGBoost for Classification (Step-by-Step Math)
+4. Complete Maths of XGBoost (Taylor Series, Objective Function, Similarity Score)
+
+KMeans Clustering
+1. Session 1: Getting Started (Geometric Intuition, Elbow Method, Assumptions, Limitations)
+2. Session 2: Silhouette Score, Hyperparameters, KMeans++
+3. Session 3: Mathematical Formulation (Lloyd's Algorithm), Mini Batch, Types of Clustering
+4. KMeans from Scratch in Python
+
+Other Clustering Algorithms
+1. Session on DBSCAN (Density Based, MinPts, Epsilon, Core/Border/Noise Points)
+2. Session on Hierarchical Clustering (Agglomerative: Single/Complete/Average/Ward Link, Dendrogram)

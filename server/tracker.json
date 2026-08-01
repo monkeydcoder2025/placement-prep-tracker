@@ -1,0 +1,21 @@
+{
+  "tasks": [
+    {
+      "source": "unknown",
+      "source_id": "s1-l1",
+      "status": "completed",
+      "completed_at": "2026-08-01T09:20:09.847Z"
+    },
+    {
+      "source": "unknown",
+      "source_id": "s1-l2",
+      "status": "completed",
+      "completed_at": "2026-08-01T09:20:11.943Z"
+    }
+  ],
+  "schedule_config": {
+    "start_date": "2026-08-01",
+    "panic_pauses": "[]"
+  },
+  "push_subscriptions": []
+}
