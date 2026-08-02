@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSettings, updateStartDate, removePanic } from '../utils/api';
 import { Trash2 } from 'lucide-react';
+import { useToast } from '../components/Toast';
+import ConfirmModal from '../components/ConfirmModal';
 
 const SettingsPage = () => {
   const [settings, setSettings] = useState(null);
   const [startDateStr, setStartDateStr] = useState('');
+  const [confirmModal, setConfirmModal] = useState({ open: false, index: null });
+  const toast = useToast();
 
   const load = async () => {
     try {
@@ -13,6 +17,7 @@ const SettingsPage = () => {
       setStartDateStr(s.start_date || '');
     } catch(e) {
       console.error(e);
+      toast.error('Failed to load settings');
     }
   };
 
@@ -23,26 +28,41 @@ const SettingsPage = () => {
   const handleUpdateDate = async () => {
     try {
       await updateStartDate(startDateStr);
-      alert('Start date updated! Schedule has been recalculated.');
+      toast.success('Start date updated! Schedule has been recalculated.');
       load();
     } catch(e) {
       console.error(e);
-      alert('Failed to update date');
+      toast.error('Failed to update date');
     }
   };
 
   const handleDeletePanic = async (idx) => {
-    if (window.confirm('Delete this panic pause? The schedule will shift back.')) {
-      try {
-        await removePanic(idx);
-        load();
-      } catch(e) {
-        console.error(e);
-      }
+    setConfirmModal({ open: true, index: idx });
+  };
+
+  const confirmDeletePanic = async () => {
+    const idx = confirmModal.index;
+    setConfirmModal({ open: false, index: null });
+    try {
+      await removePanic(idx);
+      toast.success('Panic pause removed. Schedule adjusted.');
+      load();
+    } catch(e) {
+      console.error(e);
+      toast.error('Failed to remove panic pause');
     }
   };
 
-  if (!settings) return <div className="empty-state">Loading settings...</div>;
+  if (!settings) {
+    return (
+      <div className="skeleton-container">
+        <div className="skeleton skeleton-header"></div>
+        <div className="skeleton skeleton-text"></div>
+        <div className="skeleton skeleton-card"></div>
+        <div className="skeleton skeleton-card"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -98,7 +118,15 @@ const SettingsPage = () => {
           </div>
         )}
       </div>
-      
+
+      <ConfirmModal 
+        isOpen={confirmModal.open}
+        title="Delete Panic Pause?"
+        message="This will remove the pause and shift the schedule back. This action cannot be undone."
+        confirmText="Delete"
+        onConfirm={confirmDeletePanic}
+        onCancel={() => setConfirmModal({ open: false, index: null })}
+      />
     </div>
   );
 };

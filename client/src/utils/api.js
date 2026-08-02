@@ -46,7 +46,17 @@ export const updateStartDate = async (date) => {
 };
 
 export const triggerPanic = async () => {
-  const res = await fetch(`${API_BASE}/settings/panic`, { method: 'POST' });
+  const start = new Date();
+  const end = new Date();
+  end.setDate(start.getDate() + 7);
+  const res = await fetch(`${API_BASE}/settings/panic`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      startDate: start.toISOString().split('T')[0],
+      endDate: end.toISOString().split('T')[0]
+    })
+  });
   if (!res.ok) throw new Error('Failed to trigger panic');
   return res.json();
 };
@@ -54,5 +64,11 @@ export const triggerPanic = async () => {
 export const removePanic = async (index) => {
   const res = await fetch(`${API_BASE}/settings/panic/${index}`, { method: 'DELETE' });
   if (!res.ok) throw new Error('Failed to remove panic');
+  return res.json();
+};
+
+export const fetchAllContent = async () => {
+  const res = await fetch(`${API_BASE}/schedule/content/all`);
+  if (!res.ok) throw new Error('Failed to fetch all content');
   return res.json();
 };

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 
 const TaskCard = ({ task, source, isCompleted, onToggle }) => {
   const isDSA = source === 'dsa';
+  const resourceLink = task.link || task.url || null;
   
   const handleToggle = () => {
     onToggle(task.id);
@@ -17,6 +18,17 @@ const TaskCard = ({ task, source, isCompleted, onToggle }) => {
           </span>
           <h4>{isDSA ? `Step ${task.step}: ${task.stepTitle} — ${task.title}` : `Week ${task.weekNumber || ''}: ${task.title}`}</h4>
         </div>
+        {resourceLink && (
+          <a href={resourceLink} target="_blank" rel="noreferrer" className="task-link" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '6px', 
+            color: 'var(--accent-blue)', fontSize: '0.85rem', fontWeight: 600,
+            textDecoration: 'none', whiteSpace: 'nowrap', marginLeft: '12px',
+            padding: '4px 8px', borderRadius: '6px', border: '1px solid rgba(59,130,246,0.3)',
+            transition: 'all 0.2s'
+          }}>
+            <ExternalLink size={14} /> Open resource →
+          </a>
+        )}
       </div>
       
       <div style={{ marginTop: '12px' }}>
@@ -42,5 +54,6 @@ const TaskCard = ({ task, source, isCompleted, onToggle }) => {
     </div>
   );
 };
+
 
 export default TaskCard;

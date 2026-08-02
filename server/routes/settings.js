@@ -27,7 +27,14 @@ router.put('/start-date', async (req, res) => {
 
 router.post('/panic', async (req, res) => {
   try {
-    const { startDate, endDate } = req.body;
+    let { startDate, endDate } = req.body;
+    if (!startDate || !endDate) {
+      const s = new Date();
+      const e = new Date();
+      e.setDate(s.getDate() + 7);
+      startDate = s.toISOString().split('T')[0];
+      endDate = e.toISOString().split('T')[0];
+    }
     let config = await Config.findOne({});
     if (!config) config = new Config();
     

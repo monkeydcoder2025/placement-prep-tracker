@@ -21,8 +21,20 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/placement
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || true }));
 app.use(express.json());
+
+// Optional API key auth — only enforced when API_KEY is set in env
+const API_KEY = process.env.API_KEY;
+app.use('/api', (req, res, next) => {
+  if (!API_KEY) return next(); // no key configured = open (e.g. local dev)
+  // Allow health checks without auth
+  if (req.path === '/health') return next();
+  if (req.header('x-api-key') !== API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+});
 
 app.use('/api/tasks', tasksRouter);
 app.use('/api/schedule', scheduleRouter);

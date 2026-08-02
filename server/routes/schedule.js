@@ -14,6 +14,7 @@ const router = express.Router();
 // Load data files
 const striverData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/striverA2Z.json'), 'utf-8'));
 const campxData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/campxDSMP.json'), 'utf-8'));
+const academicCalendar = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/academicCalendar.json'), 'utf-8'));
 
 async function getScheduleData() {
   let config = await Config.findOne({});
@@ -23,7 +24,7 @@ async function getScheduleData() {
   const completedTasks = await Task.find({ status: 'completed' }, 'source_id');
   const completedIds = completedTasks.map(t => t.source_id);
   
-  return generateSchedule(config.start_date, completedIds, panicPauses, [], striverData, campxData);
+  return generateSchedule(config.start_date, completedIds, panicPauses, academicCalendar, striverData, campxData);
 }
 
 router.get('/', async (req, res) => {
@@ -52,6 +53,44 @@ router.get('/stats', async (req, res) => {
     const completedIds = completedTasks.map(t => t.source_id);
     const stats = getStats(schedule, completedIds);
     res.json(stats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Return all content regardless of schedule — lets users work ahead
+router.get('/content/all', async (req, res) => {
+  try {
+    const completedTasks = await Task.find({ status: 'completed' }, 'source_id');
+    const completedIds = completedTasks.map(t => t.source_id);
+    
+    // Flatten striver subsections
+    const striverSubsections = [];
+    striverData.forEach(step => {
+      step.subsections.forEach(sub => {
+        striverSubsections.push({
+          ...sub,
+          step: step.step,
+          stepTitle: step.stepTitle,
+          completed: completedIds.includes(sub.id)
+        });
+      });
+    });
+    
+    // Annotate campx data with completion
+    const campxAnnotated = campxData.map(week => ({
+      ...week,
+      sessions: (week.sessions || []).map(s => ({
+        ...s,
+        completed: completedIds.includes(s.id)
+      }))
+    }));
+    
+    res.json({
+      striver: striverSubsections,
+      campx: campxAnnotated,
+      completedIds
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -9,3 +9,7 @@ services:
         sync: false
       - key: NODE_ENV
         value: production
+      - key: API_KEY
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false

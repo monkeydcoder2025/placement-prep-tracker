@@ -56,7 +56,22 @@ const Home = () => {
     }
   };
 
-  if (!data) return <div className="empty-state">Loading dashboard...</div>;
+  if (!data) {
+    return (
+      <div className="skeleton-container">
+        <div className="skeleton skeleton-header"></div>
+        <div className="skeleton skeleton-text"></div>
+        <div className="skeleton skeleton-bar"></div>
+        <div className="skeleton skeleton-bar"></div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="skeleton skeleton-card"></div>
+          <div className="skeleton skeleton-card"></div>
+        </div>
+        <div className="skeleton skeleton-card"></div>
+        <div className="skeleton skeleton-card"></div>
+      </div>
+    );
+  }
 
   const currentWeekend = data.saturdays && data.saturdays.length > 0 ? {
     saturday: data.saturdays[0],

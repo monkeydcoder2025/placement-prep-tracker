@@ -24,7 +24,13 @@ export function generateSchedule(startDateStr, completedIds, panicPauses, academ
       pEnd.setHours(23,59,59,999);
       if (date >= pStart && date <= pEnd) return { paused: true, type: 'panic' };
     }
-    // Exam pauses could be handled here if academicCalendar was provided
+    for (let exam of academicCalendar) {
+      const eStart = new Date(exam.startDate);
+      const eEnd = new Date(exam.endDate);
+      eStart.setHours(0,0,0,0);
+      eEnd.setHours(23,59,59,999);
+      if (date >= eStart && date <= eEnd) return { paused: true, type: 'exam' };
+    }
     return { paused: false, type: null };
   };
 
@@ -74,7 +80,8 @@ export function generateSchedule(startDateStr, completedIds, panicPauses, academ
       let assignedWeek = null;
       if (active && campxIdx < campxData.length) {
         let w = campxData[campxIdx++];
-        w.completed = completedIds.includes(`w${w.weekNumber}`);
+        const sessionIds = (w.sessions || []).map(s => s.id);
+        w.completed = sessionIds.length > 0 && sessionIds.every(id => completedIds.includes(id));
         if (w.completed) completedCampx++;
         assignedWeek = w;
       }
@@ -94,7 +101,11 @@ export function generateSchedule(startDateStr, completedIds, panicPauses, academ
     if (completedIds.includes(striverSubsections[i].id)) completedStriver++;
   }
   for (let i = campxIdx; i < campxData.length; i++) {
-    if (completedIds.includes(`w${campxData[i].weekNumber}`)) completedCampx++;
+    const week = campxData[i];
+    const sessionIds = (week.sessions || []).map(s => s.id);
+    if (sessionIds.length > 0 && sessionIds.every(id => completedIds.includes(id))) {
+      completedCampx++;
+    }
   }
 
   return {
