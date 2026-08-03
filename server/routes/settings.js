@@ -25,6 +25,20 @@ router.put('/start-date', async (req, res) => {
   }
 });
 
+router.put('/telegram', async (req, res) => {
+  try {
+    const { botToken, chatId } = req.body;
+    await Config.findOneAndUpdate({}, { 
+      telegram_bot_token: botToken,
+      telegram_chat_id: chatId,
+      updated_at: new Date() 
+    }, { upsert: true });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.post('/panic', async (req, res) => {
   try {
     let { startDate, endDate } = req.body;

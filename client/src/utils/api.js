@@ -59,6 +59,16 @@ export const updateStartDate = async (date) => {
   return res.json();
 };
 
+export const updateTelegram = async (botToken, chatId) => {
+  const res = await fetchWithAuth(`${API_BASE}/settings/telegram`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ botToken, chatId })
+  });
+  if (!res.ok) throw new Error('Failed to update Telegram settings');
+  return res.json();
+};
+
 export const triggerPanic = async () => {
   const start = new Date();
   const end = new Date();

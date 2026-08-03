@@ -7,6 +7,8 @@ import { fileURLToPath } from 'url';
 import tasksRouter from './routes/tasks.js';
 import scheduleRouter from './routes/schedule.js';
 import settingsRouter from './routes/settings.js';
+import calendarRouter from './routes/calendar.js';
+import { startCronJobs } from './services/cron.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,8 +30,8 @@ app.use(express.json());
 const API_KEY = process.env.API_KEY;
 app.use('/api', (req, res, next) => {
   if (!API_KEY) return next(); // no key configured = open (e.g. local dev)
-  // Allow health checks without auth
-  if (req.path === '/health') return next();
+  // Allow health checks and calendar feed without auth
+  if (req.path === '/health' || req.path.startsWith('/calendar/')) return next();
   if (req.header('x-api-key') !== API_KEY) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -39,6 +41,7 @@ app.use('/api', (req, res, next) => {
 app.use('/api/tasks', tasksRouter);
 app.use('/api/schedule', scheduleRouter);
 app.use('/api/settings', settingsRouter);
+app.use('/api/calendar', calendarRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
@@ -54,4 +57,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  startCronJobs();
 });
