@@ -1,7 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
 
 const input = fs.readFileSync('c:/Users/monke/Downloads/placement/_ref/campx_syllabus.txt', 'utf-8');
-const lines = input.split('\\n').map(l => l.trim()).filter(l => l);
+const lines = input.split('\n').map(l => l.trim()).filter(l => l);
 
 const data = [];
 let currentWeek = null;
@@ -38,10 +38,10 @@ for (let line of lines) {
     };
     data.push(currentWeek);
     currentSession = null;
-  } else if (/^\\d+\\./.test(line)) {
-    let sTitle = line.replace(/^\\d+\\.\\s*/, '').trim();
+  } else if (/^\d+\./.test(line)) {
+    let sTitle = line.replace(/^\d+\.\s*/, '').trim();
     currentSession = {
-      id: \`w\${currentWeek.weekNumber}-s\${currentWeek.sessions.length + 1}\`,
+      id: `w${currentWeek.weekNumber}-s${currentWeek.sessions.length + 1}`,
       title: sTitle,
       subtopics: []
     };
@@ -85,7 +85,7 @@ if (capstoneWeek) {
     data[i].weekNumber = capstoneWeek.weekNumber + (i - idx);
     // update session IDs
     data[i].sessions.forEach((s, sIdx) => {
-      s.id = \`w\${data[i].weekNumber}-s\${sIdx + 1}\`;
+      s.id = `w${data[i].weekNumber}-s${sIdx + 1}`;
     });
   }
 }
