@@ -77,10 +77,27 @@ body {
 }
 
 .sidebar-logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar-logo:hover {
+  background: var(--bg-tertiary);
+  transform: scale(1.05);
+}
+
+.logo-operator {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-secondary);
 }
 
 .sidebar-nav {

@@ -1,19 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Code, Brain, Settings, X, Image as ImageIcon } from 'lucide-react';
+import { LayoutDashboard, Code, Brain, Settings, X, Laptop, Coffee } from 'lucide-react';
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-header">
-        <img 
-          src="/logo.png" 
-          alt="App Logo" 
+        <div 
           className="sidebar-logo" 
-          style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '50%', cursor: 'pointer', border: '2px solid var(--accent-orange)' }} 
           onClick={() => { onClose(); if (window.openGoalModal) window.openGoalModal(); }}
           title="View Goal"
-        />
+        >
+          <Laptop size={16} />
+          <span className="logo-operator">+</span>
+          <Coffee size={16} />
+          <span className="logo-operator">=</span>
+          <Code size={16} />
+        </div>
         <button className="sidebar-close-btn" onClick={onClose} aria-label="Close menu">
           <X size={20} />
         </button>
