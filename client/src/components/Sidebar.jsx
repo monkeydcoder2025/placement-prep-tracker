@@ -7,8 +7,8 @@ const Sidebar = ({ isOpen, onClose }) => {
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-header">
         <img 
-          src="/goal.jpg" 
-          alt="Goal Photo" 
+          src="/logo.png" 
+          alt="App Logo" 
           className="sidebar-logo" 
           style={{ width: '44px', height: '44px', objectFit: 'cover', borderRadius: '50%', cursor: 'pointer', border: '2px solid var(--accent-orange)' }} 
           onClick={() => { onClose(); if (window.openGoalModal) window.openGoalModal(); }}
