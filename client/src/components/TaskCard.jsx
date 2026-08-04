@@ -1,16 +1,49 @@
-import React from 'react';
-import { Check, ExternalLink } from 'lucide-react';
+import React, { useRef, useCallback } from 'react';
+import { ExternalLink } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
+
+const checkVariants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: { 
+    pathLength: 1, 
+    opacity: 1,
+    transition: { duration: 0.3, ease: 'easeOut' }
+  },
+};
 
 const TaskCard = ({ task, source, isCompleted, onToggle }) => {
   const isDSA = source === 'dsa';
   const resourceLink = task.link || task.url || null;
+  const checkboxRef = useRef(null);
   
-  const handleToggle = () => {
+  const handleToggle = useCallback(() => {
+    if (!isCompleted && checkboxRef.current) {
+      const rect = checkboxRef.current.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+      
+      confetti({
+        particleCount: 18,
+        spread: 50,
+        startVelocity: 15,
+        gravity: 0.8,
+        scalar: 0.7,
+        origin: { x, y },
+        colors: ['#f94118', '#22c55e', '#3b82f6', '#f59e0b'],
+        ticks: 60,
+        disableForReducedMotion: true,
+      });
+    }
     onToggle(task.id);
-  };
+  }, [isCompleted, onToggle, task.id]);
 
   return (
-    <div className={`card task-card ${isCompleted ? 'completed' : ''}`}>
+    <motion.div
+      className={`card task-card ${isCompleted ? 'completed' : ''}`}
+      whileHover={{ y: -2, transition: { duration: 0.15 } }}
+      layout
+    >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <span className={`badge ${isDSA ? 'badge-dsa' : 'badge-campx'}`} style={{ marginBottom: '8px', display: 'inline-block' }}>
@@ -46,14 +79,47 @@ const TaskCard = ({ task, source, isCompleted, onToggle }) => {
 
       <label className="task-checkbox">
         <input type="checkbox" checked={isCompleted} onChange={handleToggle} />
-        <div className="checkbox-custom">
-          {isCompleted && <Check size={14} color="#000" />}
-        </div>
+        <motion.div
+          ref={checkboxRef}
+          className="checkbox-custom"
+          whileTap={{ scale: 0.85 }}
+          animate={isCompleted ? { 
+            backgroundColor: 'var(--accent-green)', 
+            borderColor: 'var(--accent-green)' 
+          } : { 
+            backgroundColor: 'transparent', 
+            borderColor: 'var(--border-card)' 
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          <AnimatePresence>
+            {isCompleted && (
+              <svg
+                className="checkbox-check-svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <motion.path
+                  d="M2.5 7.5L5.5 10.5L11.5 3.5"
+                  stroke="#000"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  variants={checkVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                />
+              </svg>
+            )}
+          </AnimatePresence>
+        </motion.div>
         <span>{isCompleted ? 'Completed' : 'Mark as completed'}</span>
       </label>
-    </div>
+    </motion.div>
   );
 };
-
 
 export default TaskCard;

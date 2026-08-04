@@ -96,3 +96,9 @@ export const fetchAllContent = async () => {
   if (!res.ok) throw new Error('Failed to fetch all content');
   return res.json();
 };
+
+export const fetchCompletedHistory = async () => {
+  const res = await fetchWithAuth(`${API_BASE}/tasks/completed/history`);
+  if (!res.ok) throw new Error('Failed to fetch completed history');
+  return res.json();
+};

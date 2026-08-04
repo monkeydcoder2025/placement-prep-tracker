@@ -3,6 +3,7 @@ import { fetchSettings, updateStartDate, removePanic, updateTelegram } from '../
 import { Trash2 } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import ConfirmModal from '../components/ConfirmModal';
+import { motion } from 'framer-motion';
 
 const SettingsPage = () => {
   const [settings, setSettings] = useState(null);
@@ -10,7 +11,20 @@ const SettingsPage = () => {
   const [botToken, setBotToken] = useState('');
   const [chatId, setChatId] = useState('');
   const [confirmModal, setConfirmModal] = useState({ open: false, index: null });
+  const [reduceMotion, setReduceMotion] = useState(() => {
+    return localStorage.getItem('reduce-motion') === 'true';
+  });
   const toast = useToast();
+
+  // Apply reduce-motion class to document
+  useEffect(() => {
+    if (reduceMotion) {
+      document.documentElement.classList.add('reduce-motion');
+    } else {
+      document.documentElement.classList.remove('reduce-motion');
+    }
+    localStorage.setItem('reduce-motion', String(reduceMotion));
+  }, [reduceMotion]);
 
   const load = async () => {
     try {
@@ -80,7 +94,11 @@ const SettingsPage = () => {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+    >
       <div className="page-header">
         <div>
           <h1>Settings</h1>
@@ -135,6 +153,43 @@ const SettingsPage = () => {
       </div>
 
       <div className="card" style={{ marginBottom: '24px' }}>
+        <h3 className="section-title">Accessibility</h3>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px' }}>
+          <div>
+            <div style={{ fontWeight: 600, marginBottom: '4px' }}>Reduce Motion</div>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
+              Disable animations and transitions throughout the app
+            </p>
+          </div>
+          <button
+            onClick={() => setReduceMotion(v => !v)}
+            style={{
+              width: '48px',
+              height: '26px',
+              borderRadius: '13px',
+              border: 'none',
+              background: reduceMotion ? 'var(--accent-green)' : 'var(--bg-tertiary)',
+              cursor: 'pointer',
+              position: 'relative',
+              transition: 'background 0.2s',
+              flexShrink: 0,
+            }}
+          >
+            <div style={{
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+              background: '#fff',
+              position: 'absolute',
+              top: '3px',
+              left: reduceMotion ? '25px' : '3px',
+              transition: 'left 0.2s',
+            }} />
+          </button>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginBottom: '24px' }}>
         <h3 className="section-title">Notifications (Telegram)</h3>
         <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
           Get daily reminders for today's tasks and past-due tasks.
@@ -186,7 +241,7 @@ const SettingsPage = () => {
         onConfirm={confirmDeletePanic}
         onCancel={() => setConfirmModal({ open: false, index: null })}
       />
-    </div>
+    </motion.div>
   );
 };
 

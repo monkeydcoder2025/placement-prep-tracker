@@ -2,7 +2,41 @@ import React, { useEffect, useState } from 'react';
 import ProgressBar from '../components/ProgressBar';
 import TaskCard from '../components/TaskCard';
 import { fetchSchedule, fetchAllContent, fetchCompletedTasks, completeTask, uncompleteTask } from '../utils/api';
-import { ChevronDown, ChevronRight, Eye, Calendar } from 'lucide-react';
+import { ChevronRight, Eye, Calendar } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const accordionContentVariants = {
+  collapsed: { height: 0, opacity: 0, overflow: 'hidden' },
+  expanded: { 
+    height: 'auto', 
+    opacity: 1, 
+    overflow: 'hidden',
+    transition: { 
+      height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+      opacity: { duration: 0.25, delay: 0.05 }
+    }
+  },
+  exit: { 
+    height: 0, 
+    opacity: 0, 
+    overflow: 'hidden',
+    transition: { 
+      height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] },
+      opacity: { duration: 0.15 }
+    }
+  }
+};
+
+const staggerContainer = {
+  expanded: {
+    transition: { staggerChildren: 0.05 }
+  },
+};
+
+const staggerChild = {
+  collapsed: { opacity: 0, y: 8 },
+  expanded: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+};
 
 const DSAPage = () => {
   const [schedule, setSchedule] = useState(null);
@@ -87,7 +121,11 @@ const DSAPage = () => {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+    >
       <div className="page-header">
         <div>
           <h1>Striver's A2Z DSA Sheet</h1>
@@ -126,35 +164,55 @@ const DSAPage = () => {
           <div key={step} className="accordion">
             <div className="accordion-header" onClick={() => toggleStep(step)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                {isExpanded ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
+                <motion.div
+                  className="accordion-chevron"
+                  animate={{ rotate: isExpanded ? 90 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronRight size={20} />
+                </motion.div>
                 <h3 style={{ margin: 0 }}>Step {step}: {stepTitle}</h3>
               </div>
               <span className="badge badge-dsa">{tasks.filter(t => completedIds.includes(t.id)).length}/{tasks.length}</span>
             </div>
-            {isExpanded && (
-              <div className="accordion-content">
-                {tasks.map(task => (
-                  <div key={task.id} style={{ marginBottom: '8px' }}>
-                    {task.date && (
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Scheduled: {task.date}</div>
-                    )}
-                    {!task.date && (
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '4px', fontStyle: 'italic' }}>Not yet scheduled</div>
-                    )}
-                    <TaskCard 
-                      task={task} 
-                      source="dsa" 
-                      isCompleted={completedIds.includes(task.id)} 
-                      onToggle={handleToggle} 
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  variants={accordionContentVariants}
+                  initial="collapsed"
+                  animate="expanded"
+                  exit="exit"
+                >
+                  <motion.div
+                    className="accordion-content"
+                    variants={staggerContainer}
+                    initial="collapsed"
+                    animate="expanded"
+                  >
+                    {tasks.map(task => (
+                      <motion.div key={task.id} variants={staggerChild} style={{ marginBottom: '8px' }}>
+                        {task.date && (
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Scheduled: {task.date}</div>
+                        )}
+                        {!task.date && (
+                          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '4px', fontStyle: 'italic' }}>Not yet scheduled</div>
+                        )}
+                        <TaskCard 
+                          task={task} 
+                          source="dsa" 
+                          isCompleted={completedIds.includes(task.id)} 
+                          onToggle={handleToggle} 
+                        />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

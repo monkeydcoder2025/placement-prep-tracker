@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const ProgressBar = ({ label, current, total, color = 'var(--accent-blue)', type = 'default' }) => {
   const percentage = total > 0 ? Math.round((current / total) * 100) : 0;
@@ -11,7 +12,12 @@ const ProgressBar = ({ label, current, total, color = 'var(--accent-blue)', type
         <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{current} / {total} ({percentage}%)</span>
       </div>
       <div className="progress-container">
-        <div className={barClass} style={{ width: `${percentage}%` }}></div>
+        <motion.div
+          className={barClass}
+          initial={{ width: 0 }}
+          animate={{ width: `${percentage}%` }}
+          transition={{ type: 'spring', stiffness: 60, damping: 15 }}
+        />
       </div>
     </div>
   );

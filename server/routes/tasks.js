@@ -21,6 +21,15 @@ router.get('/completed', async (req, res) => {
   }
 });
 
+router.get('/completed/history', async (req, res) => {
+  try {
+    const tasks = await Task.find({ status: 'completed' }, 'source_id completed_at');
+    res.json(tasks.map(t => ({ source_id: t.source_id, completed_at: t.completed_at })));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.post('/:sourceId/complete', async (req, res) => {
   try {
     const { sourceId } = req.params;

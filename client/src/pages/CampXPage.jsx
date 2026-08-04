@@ -2,7 +2,41 @@ import React, { useEffect, useState } from 'react';
 import ProgressBar from '../components/ProgressBar';
 import TaskCard from '../components/TaskCard';
 import { fetchSchedule, fetchAllContent, fetchCompletedTasks, completeTask, uncompleteTask } from '../utils/api';
-import { ChevronDown, ChevronRight, Eye, Calendar } from 'lucide-react';
+import { ChevronRight, Eye, Calendar } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const accordionContentVariants = {
+  collapsed: { height: 0, opacity: 0, overflow: 'hidden' },
+  expanded: { 
+    height: 'auto', 
+    opacity: 1, 
+    overflow: 'hidden',
+    transition: { 
+      height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+      opacity: { duration: 0.25, delay: 0.05 }
+    }
+  },
+  exit: { 
+    height: 0, 
+    opacity: 0, 
+    overflow: 'hidden',
+    transition: { 
+      height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] },
+      opacity: { duration: 0.15 }
+    }
+  }
+};
+
+const staggerContainer = {
+  expanded: {
+    transition: { staggerChildren: 0.05 }
+  },
+};
+
+const staggerChild = {
+  collapsed: { opacity: 0, y: 8 },
+  expanded: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+};
 
 const CampXPage = () => {
   const [schedule, setSchedule] = useState(null);
@@ -85,7 +119,11 @@ const CampXPage = () => {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+    >
       <div className="page-header">
         <div>
           <h1>CampX Data Science</h1>
@@ -126,41 +164,64 @@ const CampXPage = () => {
               <div key={week.weekNumber} className="accordion">
                 <div className="accordion-header" onClick={() => toggleWeek(week.weekNumber)}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    {isExpanded ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
+                    <motion.div
+                      className="accordion-chevron"
+                      animate={{ rotate: isExpanded ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ChevronRight size={20} />
+                    </motion.div>
                     <h3 style={{ margin: 0 }}>Week {week.weekNumber}: {week.title}</h3>
                   </div>
                   <span className="badge badge-campx">
                     {week.sessions ? week.sessions.filter(s => completedIds.includes(s.id)).length : 0}/{week.sessions ? week.sessions.length : 0}
                   </span>
                 </div>
-                {isExpanded && (
-                  <div className="accordion-content">
-                    {week.date ? (
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '8px', paddingLeft: '16px' }}>
-                        Scheduled: {week.date}
-                      </div>
-                    ) : (
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '16px', fontStyle: 'italic' }}>
-                        Not yet scheduled
-                      </div>
-                    )}
-                    {week.sessions && week.sessions.map(session => (
-                      <TaskCard 
-                        key={session.id}
-                        task={{...session, weekNumber: week.weekNumber}} 
-                        source="campx" 
-                        isCompleted={completedIds.includes(session.id)} 
-                        onToggle={handleToggle} 
-                      />
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      variants={accordionContentVariants}
+                      initial="collapsed"
+                      animate="expanded"
+                      exit="exit"
+                    >
+                      <motion.div
+                        className="accordion-content"
+                        variants={staggerContainer}
+                        initial="collapsed"
+                        animate="expanded"
+                      >
+                        <motion.div variants={staggerChild}>
+                          {week.date ? (
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '8px', paddingLeft: '16px' }}>
+                              Scheduled: {week.date}
+                            </div>
+                          ) : (
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '16px', fontStyle: 'italic' }}>
+                              Not yet scheduled
+                            </div>
+                          )}
+                        </motion.div>
+                        {week.sessions && week.sessions.map(session => (
+                          <motion.div key={session.id} variants={staggerChild}>
+                            <TaskCard 
+                              task={{...session, weekNumber: week.weekNumber}} 
+                              source="campx" 
+                              isCompleted={completedIds.includes(session.id)} 
+                              onToggle={handleToggle} 
+                            />
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

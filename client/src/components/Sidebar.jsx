@@ -1,6 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, Code, Brain, Settings, X, Laptop, Coffee } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const navItems = [
+  { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/dsa', icon: Code, label: 'DSA' },
+  { to: '/campx', icon: Brain, label: 'CampX' },
+  { to: '/settings', icon: Settings, label: 'Settings' },
+];
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
@@ -22,22 +30,29 @@ const Sidebar = ({ isOpen, onClose }) => {
         </button>
       </div>
       <nav className="sidebar-nav">
-        <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
-          <LayoutDashboard size={20} />
-          <span>Dashboard</span>
-        </NavLink>
-        <NavLink to="/dsa" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
-          <Code size={20} />
-          <span>DSA</span>
-        </NavLink>
-        <NavLink to="/campx" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
-          <Brain size={20} />
-          <span>CampX</span>
-        </NavLink>
-        <NavLink to="/settings" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
-          <Settings size={20} />
-          <span>Settings</span>
-        </NavLink>
+        {navItems.map(({ to, icon: Icon, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            onClick={onClose}
+            end={to === '/'}
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active-pill"
+                    className="active-pill"
+                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <Icon size={20} />
+                <span>{label}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
       </nav>
     </aside>
   );
