@@ -43,8 +43,10 @@ app.use('/api/schedule', scheduleRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/calendar', calendarRouter);
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok' });
+app.get('/api/health', (_req, res) => {
+  res
+    .status(200)
+    .json({ success: true, status: "ok", timestamp: new Date().toISOString() });
 });
 
 // Serve static files from the React frontend app
